@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+/* Base Styles */
+html, body {
+  background-color: #050505;
+  color: #E8DFC9;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: auto; /* Handled by Lenis */
+}
+
+/* Custom Selection */
+::selection {
+  background: #C6A76A;
+  color: #050505;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1B1B1B;
+  border-radius: 3px;
+  border: 1px solid rgba(198, 167, 106, 0.15);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C6A76A;
+}
+
+/* Luxury Font Headings */
+h1, h2, h3, h4, h5, h6, .font-serif-luxury {
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  letter-spacing: 0.15em;
+}
+
+/* Ambient glow cursor radial background helper */
+.mouse-glow-bg {
+  background: radial-gradient(600px circle at var(--x, 0px) var(--y, 0px), rgba(198, 167, 106, 0.08), transparent 80%);
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+/* Custom utilities */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #E8DFC9 0%, #C6A76A 50%, #D6C2A3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-border {
+  border-image: linear-gradient(to right, rgba(198,167,106,0.1), rgba(198,167,106,0.6), rgba(198,167,106,0.1)) 1;
+}
+
+/* Glassmorphism panel styling */
+.glass-panel {
+  background: rgba(27, 27, 27, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(198, 167, 106, 0.08);
+}
+
+.glass-panel-hover:hover {
+  border-color: rgba(198, 167, 106, 0.35);
+  background: rgba(27, 27, 27, 0.6);
+  box-shadow: 0 10px 30px -15px rgba(198, 167, 106, 0.15);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Lenis smooth scroll adjustments */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Text Shimmer Effect */
+.shimmer-trigger:hover .shimmer-element {
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Custom layout for GSAP Pinning Horizontal Scroll */
+.horizontal-scroll-container {
+  display: flex;
+  flex-wrap: nowrap;
+  will-change: transform;
+}
+
+/* Interactive hotspots inside architectural details */
+.hotspot-ring {
+  animation: pulse-ring 2s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.65);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
