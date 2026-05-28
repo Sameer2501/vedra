@@ -62,10 +62,14 @@ export default function Preloader({ onComplete }) {
     requestAnimationFrame(animate);
   }, [onComplete]);
 
-  // Formatting number to double digit: 01, 09, 99, 100
-  const formatNumber = (num) => {
-    if (num === 100) return "100";
-    return num < 10 ? `0${num}` : `${num}`;
+  // Dynamic luxury status messages for the loading progression
+  const getStatusText = (value) => {
+    if (value < 15) return "ESTABLISHING SPATIAL GRID";
+    if (value < 35) return "COMPOSING VOLUMETRIC FORMS";
+    if (value < 55) return "TEXTURING MATERIAL SURFACES";
+    if (value < 75) return "LIGHTING INTERIOR SPACES";
+    if (value < 92) return "POLISHING AMBIENT DETAILS";
+    return "EXPERIENCE READY";
   };
 
   // Variants for luxury curtain reveal (wipe out)
@@ -171,15 +175,24 @@ export default function Preloader({ onComplete }) {
           </span>
         </div>
         
-        {/* Large Elegant Serif Counter */}
-        <div className="flex items-baseline font-serif select-none">
-          <motion.span 
-            className="text-7xl md:text-8xl font-light text-v-ivory/90 leading-none tracking-tighter"
-            style={{ fontFamily: "'Cinzel', serif" }}
-          >
-            {formatNumber(counter)}
-          </motion.span>
-          <span className="text-v-gold text-lg ml-1 font-sans font-light opacity-80">%</span>
+        {/* Dynamic Luxury Status Log */}
+        <div className="flex items-center gap-3 select-none justify-end">
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={getStatusText(counter)}
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[10px] md:text-xs font-sans tracking-[0.2em] text-v-beige uppercase font-light text-right"
+            >
+              {getStatusText(counter)}
+            </motion.span>
+          </AnimatePresence>
+          <span className="relative flex h-2 w-2 flex-shrink-0">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-v-gold opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-v-gold"></span>
+          </span>
         </div>
       </div>
     </motion.div>
