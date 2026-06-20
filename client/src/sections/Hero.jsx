@@ -84,7 +84,8 @@ export default function Hero() {
           muted
           playsInline
           loop={false}
-          className="w-full h-full object-cover object-bottom opacity-45 pointer-events-none"
+          className="w-full h-full object-cover opacity-45 pointer-events-none"
+          style={{ objectPosition: '65% bottom' }}
         />
         {/* Elegant dark vignette overlay to ensure high contrast for typography */}
         <div className="absolute inset-0 bg-gradient-to-b from-v-black/50 via-transparent to-v-black/90 pointer-events-none" />
