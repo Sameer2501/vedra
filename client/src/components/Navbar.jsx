@@ -70,8 +70,8 @@ export default function Navbar() {
           >
             <VedraMonogram className="h-10 w-10 transition-transform duration-500 group-hover:rotate-12" />
             <div className="flex flex-col items-start leading-none">
-              <span className="font-serif text-lg tracking-[0.2em] text-v-ivory font-medium">VEDRA</span>
-              <span className="text-[8px] font-sans tracking-[0.45em] text-v-beige uppercase pl-[0.1em] mt-0.5">Living</span>
+              <span className="font-serif text-lg tracking-[0.2em] text-v-ivory font-medium" style={{ fontFamily: "'Cinzel', serif" }}>VEDRA</span>
+              <span className="text-[7.5px] font-serif tracking-[0.45em] text-v-gold uppercase pl-[0.15em] mt-1" style={{ fontFamily: "'Cinzel', serif" }}>LIVING</span>
             </div>
           </a>
 

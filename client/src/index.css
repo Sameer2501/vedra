@@ -143,30 +143,23 @@ html.lenis, html.lenis body {
 
 /* Monogram stroke drawing keyframe animations for Luxury Preloader */
 .monogram-frame-path {
-  stroke-dasharray: 400;
-  stroke-dashoffset: 400;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
   animation: drawStroke 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .monogram-inner-line {
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
+  stroke-dasharray: 150;
+  stroke-dashoffset: 150;
   animation: drawStroke 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.3s;
 }
 
 .monogram-inner-v {
-  stroke-dasharray: 250;
-  stroke-dashoffset: 250;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
   animation: drawStroke 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.5s;
-}
-
-.monogram-inner-l {
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-  animation: drawStroke 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 0.7s;
 }
 
 .monogram-gold-dot {

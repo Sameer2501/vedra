@@ -8,10 +8,9 @@ export const VedraMonogram = ({ className = "h-24 w-24", animated = false }) => 
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      {/* Monogram Outer Square Frame */}
-      {/* Top right corner and bottom border */}
+      {/* Top-Right Outer Frame */}
       <path 
-        d="M 45 15 H 105 V 105 H 15 V 45" 
+        d="M 38 15 H 105 V 105 H 90" 
         stroke="#E8DFC9" 
         strokeWidth="3.5" 
         strokeLinecap="round"
@@ -19,22 +18,19 @@ export const VedraMonogram = ({ className = "h-24 w-24", animated = false }) => 
         className={animated ? "monogram-frame-path" : ""}
       />
       
-      {/* V & L Interlinked Monogram Inner Elements */}
-      {/* The left vertical stroke */}
-      <line 
-        x1="15" 
-        y1="38" 
-        x2="15" 
-        y2="105" 
+      {/* Bottom-Left Outer Frame (including left vertical line of V and bottom stroke of L) */}
+      <path 
+        d="M 15 38 V 105 H 77" 
         stroke="#E8DFC9" 
-        strokeWidth="3.5"
+        strokeWidth="3.5" 
         strokeLinecap="round"
+        strokeLinejoin="round"
         className={animated ? "monogram-inner-line" : ""}
       />
       
-      {/* The V diagonal going down-right, then up-right */}
+      {/* Inner V-diagonal and L-vertical */}
       <path 
-        d="M 45 40 L 15 105 L 56 105 L 56 40" 
+        d="M 15 105 L 52 40 L 58 46 V 105" 
         stroke="#E8DFC9" 
         strokeWidth="3.5" 
         strokeLinecap="round"
@@ -42,20 +38,11 @@ export const VedraMonogram = ({ className = "h-24 w-24", animated = false }) => 
         className={animated ? "monogram-inner-v" : ""}
       />
       
-      {/* The L horizontal bottom stroke */}
-      <path 
-        d="M 39 105 H 95" 
-        stroke="#E8DFC9" 
-        strokeWidth="3.5" 
-        strokeLinecap="round"
-        className={animated ? "monogram-inner-l" : ""}
-      />
-      
-      {/* The luxury gold accent dot */}
+      {/* Luxury gold accent dot */}
       <circle 
-        cx="95" 
+        cx="85" 
         cy="105" 
-        r="4.5" 
+        r="5.5" 
         fill="#C6A76A" 
         className={animated ? "monogram-gold-dot" : ""}
       />
@@ -72,18 +59,18 @@ export const VedraLogo = ({ className = "w-full max-w-[280px]", showSub = true, 
       {/* Wordmark VEDRA */}
       <div className="relative select-none">
         <h1 
-          className="text-4xl font-serif tracking-[0.25em] text-v-ivory font-light leading-none relative flex items-center justify-center"
+          className="text-4xl font-serif text-v-ivory font-light leading-none relative flex items-center justify-center"
           style={{ fontFamily: "'Cinzel', serif" }}
         >
-          VEDR
-          <span className="relative inline-block">
+          <span className="tracking-[0.25em]">VEDR</span>
+          <span className="relative inline-block tracking-normal">
             A
-            {/* Dot inside the A */}
+            {/* Dot inside the upper triangle counter of A */}
             <span 
-              className="absolute w-[4.5px] h-[4.5px] rounded-full bg-v-gold"
+              className="absolute w-[5.5px] h-[5.5px] rounded-full bg-v-gold z-10"
               style={{
-                left: '46.5%',
-                bottom: '22%',
+                left: '50%',
+                bottom: '52%',
                 transform: 'translateX(-50%)',
               }}
             />
@@ -93,14 +80,15 @@ export const VedraLogo = ({ className = "w-full max-w-[280px]", showSub = true, 
       
       {/* Living Sub-header with flanking gold lines */}
       {showSub && (
-        <div className="flex items-center justify-center w-full mt-3 px-2 opacity-85">
-          <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-v-gold" />
+        <div className="flex items-center justify-center w-full mt-3 px-2 opacity-90">
+          <div className="h-[1.5px] w-12 bg-v-gold flex-shrink-0" />
           <span 
-            className="text-[11px] font-sans tracking-[0.6em] text-v-beige uppercase mx-3 pl-[0.6em] font-light"
+            className="text-[10px] font-serif tracking-[0.6em] text-v-gold uppercase mx-3 pl-[0.6em] font-medium"
+            style={{ fontFamily: "'Cinzel', serif" }}
           >
-            Living
+            LIVING
           </span>
-          <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-v-gold" />
+          <div className="h-[1.5px] w-12 bg-v-gold flex-shrink-0" />
         </div>
       )}
     </div>
