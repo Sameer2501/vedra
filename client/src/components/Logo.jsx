@@ -1,35 +1,24 @@
 import React from 'react';
-import vedraLogo from '../assets/download.png';
+import vedraLogo from '../assets/finalLogo.png';
 
 export const VedraMonogram = ({ className = "h-24 w-24", animated = false }) => {
   return (
     <img 
       src={vedraLogo} 
       alt="Vedra Monogram" 
-      className={`${className} object-cover`}
-      style={{
-        objectPosition: 'center 38.5%'
-      }}
+      className={`${className} h-auto object-contain`}
     />
   );
 };
 
 export const VedraLogo = ({ className = "w-full max-w-[280px]", showSub = true, animated = false }) => {
-  // Since the new logo image already contains the monogram, "VEDRA", and "LIVING", 
-  // we render the image directly, cropping the extra vertical padding for optimal presentation.
+  // Render the transparent high-definition logo directly with natural aspect ratio and zero padding issues
   return (
-    <div 
-      className={`overflow-hidden relative flex items-center justify-center aspect-[4/5] ${className}`}
-    >
-      <img 
-        src={vedraLogo} 
-        alt="VEDRA LIVING" 
-        className="w-full h-[150%] max-w-none object-cover"
-        style={{
-          objectPosition: 'center 46%'
-        }}
-      />
-    </div>
+    <img 
+      src={vedraLogo} 
+      alt="VEDRA LIVING" 
+      className={`${className} h-auto object-contain`}
+    />
   );
 };
 

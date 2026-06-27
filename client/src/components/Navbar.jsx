@@ -23,7 +23,7 @@ export default function Navbar() {
       // Simple active link highlighting
       const sections = navLinks.map(link => link.href.substring(1));
       sections.push('hero');
-      
+
       let currentSection = 'hero';
       for (const section of sections) {
         const el = document.getElementById(section);
@@ -54,25 +54,20 @@ export default function Navbar() {
 
   return (
     <>
-      <nav 
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 px-6 md:px-12 py-4 ${
-          isScrolled 
-            ? 'glass-panel border-b border-v-gold/10 py-3 bg-v-black/80' 
+      <nav
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 px-6 md:px-12 py-4 ${isScrolled
+            ? 'glass-panel border-b border-v-gold/10 py-3 bg-v-black/80'
             : 'bg-transparent py-6'
-        }`}
+          }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo & Monogram */}
-          <a 
-            href="#hero" 
+          <a
+            href="#hero"
             onClick={(e) => handleNavClick(e, '#hero')}
-            className="flex items-center gap-3 group hover-interactive"
+            className="flex items-center group hover-interactive"
           >
-            <VedraMonogram className="h-10 w-10 transition-transform duration-500 group-hover:rotate-12" />
-            <div className="flex flex-col items-start leading-none">
-              <span className="font-serif text-lg tracking-[0.2em] text-v-ivory font-medium" style={{ fontFamily: "'Cinzel', serif" }}>VEDRA</span>
-              <span className="text-[7.5px] font-serif tracking-[0.45em] text-v-gold uppercase pl-[0.15em] mt-1" style={{ fontFamily: "'Cinzel', serif" }}>LIVING</span>
-            </div>
+            <VedraMonogram className="h-20 w-20 transition-transform duration-500 group-hover:rotate-12" />
           </a>
 
           {/* Desktop Nav Links */}
@@ -84,15 +79,13 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className={`text-xs font-sans tracking-luxury uppercase transition-all duration-300 relative py-1 hover-interactive ${
-                    isActive ? 'text-v-gold' : 'text-v-beige/70 hover:text-v-ivory'
-                  }`}
+                  className={`text-xs font-sans tracking-luxury uppercase transition-all duration-300 relative py-1 hover-interactive ${isActive ? 'text-v-gold' : 'text-v-beige/70 hover:text-v-ivory'
+                    }`}
                 >
                   {link.name}
-                  <span 
-                    className={`absolute bottom-0 left-0 w-full h-[1px] bg-v-gold origin-left transition-transform duration-500 ${
-                      isActive ? 'scale-x-100' : 'scale-x-0 hover:scale-x-100'
-                    }`}
+                  <span
+                    className={`absolute bottom-0 left-0 w-full h-[1px] bg-v-gold origin-left transition-transform duration-500 ${isActive ? 'scale-x-100' : 'scale-x-0 hover:scale-x-100'
+                      }`}
                   />
                 </a>
               );
@@ -101,8 +94,8 @@ export default function Navbar() {
 
           {/* Consultation button */}
           <div className="hidden md:block">
-            <a 
-              href="#contact" 
+            <a
+              href="#contact"
               onClick={(e) => handleNavClick(e, '#contact')}
               className="group relative overflow-hidden inline-flex items-center gap-2 border border-v-gold/40 px-5 py-2.5 text-xs tracking-luxury uppercase font-medium text-v-ivory bg-transparent hover-interactive hover:border-v-gold transition-all duration-500"
             >
@@ -114,7 +107,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile menu toggle */}
-          <button 
+          <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden text-v-ivory hover-interactive p-1 focus:outline-none"
             aria-label="Toggle menu"
@@ -125,16 +118,15 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Menu Panel */}
-      <div 
-        className={`fixed inset-0 z-40 bg-v-black/95 backdrop-blur-lg flex flex-col justify-center items-center px-6 transition-all duration-700 md:hidden ${
-          mobileMenuOpen 
-            ? 'opacity-100 translate-y-0 pointer-events-auto' 
+      <div
+        className={`fixed inset-0 z-40 bg-v-black/95 backdrop-blur-lg flex flex-col justify-center items-center px-6 transition-all duration-700 md:hidden ${mobileMenuOpen
+            ? 'opacity-100 translate-y-0 pointer-events-auto'
             : 'opacity-0 -translate-y-full pointer-events-none'
-        }`}
+          }`}
       >
         <div className="flex flex-col items-center gap-6 text-center">
-          <VedraMonogram className="h-16 w-16 mb-4 animate-pulse-slow" />
-          
+          <VedraMonogram className="h-24 w-24 mb-4 animate-pulse-slow" />
+
           {navLinks.map((link) => {
             const isActive = activeSection === link.href.substring(1);
             return (
@@ -142,17 +134,16 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`text-lg font-serif tracking-[0.2em] uppercase transition-all duration-300 ${
-                  isActive ? 'text-v-gold' : 'text-v-ivory/70 hover:text-v-ivory'
-                }`}
+                className={`text-lg font-serif tracking-[0.2em] uppercase transition-all duration-300 ${isActive ? 'text-v-gold' : 'text-v-ivory/70 hover:text-v-ivory'
+                  }`}
               >
                 {link.name}
               </a>
             );
           })}
-          
-          <a 
-            href="#contact" 
+
+          <a
+            href="#contact"
             onClick={(e) => handleNavClick(e, '#contact')}
             className="mt-6 inline-flex items-center gap-2 border border-v-gold px-8 py-3 text-sm tracking-luxury uppercase text-v-ivory bg-v-gold/10 hover:bg-v-gold/25 transition-all duration-300"
           >

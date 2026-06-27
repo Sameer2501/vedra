@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Logo Transparency Converter</title>
+</head>
+<body>
+  <h2>Converting Logo...</h2>
+  <canvas id="canvas"></canvas>
+  <script>
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = function() {
+      const canvas = document.getElementById('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      
+      const imgData = ctx.getImageData(0, 0, img.width, img.height);
+      const data = imgData.data;
+      
+      // Convert black background to transparent
+      for (let i = 0; i < data.length; i += 4) {
+        const r = data[i];
+        const g = data[i+1];
+        const b = data[i+2];
+        
+        // If the pixel is black or very close to black
+        if (r < 25 && g < 25 && b < 25) {
+          data[i+3] = 0; // Make transparent
+        }
+      }
+      
+      ctx.putImageData(imgData, 0, 0);
+      const transparentDataUrl = canvas.toDataURL('image/png');
+      
+      // Log start and end tags so it is easy to extract from console logs
+      console.log("CONVERT_START" + transparentDataUrl + "CONVERT_END");
+      
+      const status = document.createElement('h3');
+      status.id = "status-complete";
+      status.innerText = "Conversion Complete!";
+      document.body.appendChild(status);
+    };
+    img.src = '/src/assets/hdLogo.png';
+  </script>
+</body>
+</html>

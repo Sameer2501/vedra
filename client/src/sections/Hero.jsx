@@ -17,8 +17,8 @@ export default function Hero() {
       // 1. Initial fade-in of background video container
       gsap.fromTo('.hero-video-container',
         { scale: 1.05, opacity: 0 },
-        { 
-          scale: 1.0, 
+        {
+          scale: 1.0,
           opacity: 1,
           duration: 3.0,
           ease: 'power2.out',
@@ -33,14 +33,14 @@ export default function Hero() {
         { opacity: 0, scale: 0.94, y: 20 },
         { opacity: 1, scale: 1, y: 0, duration: 1.8, ease: 'power3.out' }
       )
-      .call(() => {
-        // Play the video from the beginning once the preloader transitions away
-        if (videoRef.current) {
-          videoRef.current.play().catch(err => {
-            console.log("Autoplay blocked or play programmatically failed:", err);
-          });
-        }
-      }, null, '-=1.8');
+        .call(() => {
+          // Play the video from the beginning once the preloader transitions away
+          if (videoRef.current) {
+            videoRef.current.play().catch(err => {
+              console.log("Autoplay blocked or play programmatically failed:", err);
+            });
+          }
+        }, null, '-=1.8');
 
       // 3. ScrollTrigger parallax zoom on background video
       gsap.to('.hero-video-container', {
@@ -71,9 +71,9 @@ export default function Hero() {
   }, []);
 
   return (
-    <section 
+    <section
       ref={containerRef}
-      id="hero" 
+      id="hero"
       className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-[#050505] cursor-default"
     >
       {/* Scroll-Tracked Parallax Background Wrapper (Stable under mouse movement) */}
@@ -92,18 +92,18 @@ export default function Hero() {
 
       {/* CENTRAL CORE CONTENT (z-index 10 is clickable due to absolute overlay alignment) */}
       <div className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none z-10 select-none">
-        
+
         {/* Luxury Rotating blueprint lines in background */}
         <div className="absolute inset-0 w-full h-full flex items-center justify-center opacity-10 pointer-events-none">
           <svg className="w-[320px] h-[320px] md:w-[600px] md:h-[600px]" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <motion.circle 
-              cx="100" cy="100" r="80" 
+            <motion.circle
+              cx="100" cy="100" r="80"
               fill="none" stroke="#C6A76A" strokeWidth="0.25" strokeDasharray="3 3"
               animate={{ rotate: 360 }}
               transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
             />
-            <motion.circle 
-              cx="100" cy="100" r="50" 
+            <motion.circle
+              cx="100" cy="100" r="50"
               fill="none" stroke="#C6A76A" strokeWidth="0.25" strokeDasharray="1 2"
               animate={{ rotate: -360 }}
               transition={{ repeat: Infinity, duration: 45, ease: "linear" }}
@@ -114,23 +114,21 @@ export default function Hero() {
         </div>
 
         {/* Brand details and CTAs */}
-        <motion.div 
+        <motion.div
           className="text-center flex flex-col items-center justify-center px-4 w-full max-w-4xl hero-parallax-content pointer-events-auto"
         >
-          {/* Monogram Reveal */}
-          <div className="mb-6 md:mb-8">
-            <VedraLogo showSub={true} className="w-full max-w-[260px] sm:max-w-[320px] md:max-w-[400px]" animated={true} />
-          </div>
-
           {/* Tagline Reveal */}
           <div className="flex flex-col items-center gap-3 md:gap-4">
+            <span className="text-sm md:text-lg font-serif tracking-[0.3em] text-v-gold uppercase mb-1">
+              Ved — Knowledge. Dra — Roots.
+            </span>
             <h2 className="text-v-ivory text-sm sm:text-base md:text-2xl font-serif font-light tracking-[0.25em] md:tracking-[0.3em] uppercase leading-relaxed relative">
               Where Architecture Meets Prestige
               <span className="absolute bottom-[-8px] left-[10%] w-[80%] h-[1px] bg-gradient-to-r from-transparent via-v-gold/70 to-transparent overflow-hidden">
                 <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-v-ivory to-transparent -translate-x-full animate-light-sweep" />
               </span>
             </h2>
-            
+
             <p className="text-[10px] md:text-sm font-sans tracking-[0.15em] md:tracking-[0.2em] uppercase text-v-beige/65 max-w-[280px] sm:max-w-lg mt-2 md:mt-4 leading-relaxed pl-[0.15em]">
               Crafting bespoke architectural monuments for the extraordinary.
             </p>
