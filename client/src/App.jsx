@@ -29,7 +29,7 @@ function App() {
     } else {
       document.documentElement.classList.remove('lenis-stopped');
       document.body.style.overflow = '';
-      
+
       // Force window scroll position reset to top on refresh
       window.scrollTo(0, 0);
     }
@@ -51,7 +51,7 @@ function App() {
       <SmoothScroll>
         {/* Premium custom mouse glowing follower */}
         <CustomCursor />
-        
+
         {/* Glassmorphic Navbar */}
         <Navbar />
 
