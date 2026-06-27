@@ -15,7 +15,7 @@ import Interiors from './sections/Interiors';
 import WhyChoose from './sections/WhyChoose';
 import Testimonials from './sections/Testimonials';
 import Timeline from './sections/Timeline';
-import Stats from './sections/Stats';
+// import Stats from './sections/Stats';
 import Contact from './sections/Contact';
 
 function App() {
@@ -65,7 +65,7 @@ function App() {
           <WhyChoose />
           <Testimonials />
           <Timeline />
-          <Stats />
+          {/* <Stats /> */}
           <Contact />
         </main>
 
