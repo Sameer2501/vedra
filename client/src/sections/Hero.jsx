@@ -219,12 +219,12 @@ export default function Hero() {
         >
           {/* Brand Logo Text */}
           <div className="flex flex-col items-center mb-8 md:mb-12 select-none">
-            <h1 className="text-3xl mt-5 sm:text-4xl md:text-5xl lg:text-5xl font-serif tracking-[0.35em] text-v-ivory uppercase leading-none pl-[0.35em]">
+            <h1 className="text-5xl mt-5 sm:text-4xl md:text-5xl lg:text-5xl font-serif tracking-[0.35em] text-v-ivory uppercase leading-none pl-[0.35em]">
               VEDRA
             </h1>
             <div className="flex items-center gap-3 mt-3 md:mt-4">
               <span className="w-10 md:w-8 h-[1px] bg-v-gold/45"></span>
-              <span className="text-[9px] md:text-[10px] font-sans tracking-[0.45em] text-v-beige uppercase pl-[0.45em]">
+              <span className="text-[12px] sm:text-[10px] md:text-[10px] font-sans tracking-[0.45em] text-v-beige uppercase pl-[0.45em]">
                 LIVING
               </span>
               <span className="w-10 md:w-8 h-[1px] bg-v-gold/45"></span>
@@ -237,9 +237,9 @@ export default function Hero() {
                 <div className="absolute inset-0 gold-line-sweep-ltr -translate-x-full animate-sweep-ltr" />
               </div>
               <div className="mx-3.5 flex items-center justify-center">
-                <div
-                  className="w-3 h-3 rotate-45 border bg-transparent flex-shrink-0 animate-pulse"
-                  style={{ borderColor: 'rgba(198, 167, 106, 1)' }}
+                <div 
+                  className="w-3 h-3 rotate-45 border bg-transparent flex-shrink-0 animate-pulse" 
+                  style={{ borderColor: 'rgba(198, 167, 106, 1)' }} 
                 />
               </div>
               {/* Right Line with continuous light sweep */}
@@ -254,14 +254,14 @@ export default function Hero() {
             {/* <span className="text-sm md:text-lg font-serif tracking-[0.3em] text-v-gold uppercase mb-1">
               Ved — Knowledge. Dra — Roots.
             </span> */}
-            <h2 className="text-v-ivory text-sm sm:text-base md:text-2xl font-serif font-light tracking-[0.25em] md:tracking-[0.3em] uppercase leading-relaxed relative">
+            <h2 className="text-v-ivory text-[17px] sm:text-base md:text-2xl font-serif font-light tracking-[0.25em] md:tracking-[0.3em] uppercase leading-relaxed relative text-center">
               Designed with Intent . Built for living
               <span className="absolute bottom-[-8px] left-[10%] w-[80%] h-[1px] bg-gradient-to-r from-transparent via-v-gold/70 to-transparent overflow-hidden">
                 <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-v-ivory to-transparent -translate-x-full animate-light-sweep" />
               </span>
             </h2>
 
-            <p className="text-[10px] md:text-sm font-sans tracking-[0.15em] md:tracking-[0.2em] uppercase text-v-beige/65 max-w-[280px] sm:max-w-lg mt-2 md:mt-4 leading-relaxed pl-[0.15em]">
+            <p className="text-[12px] sm:text-xs md:text-sm font-sans tracking-[0.15em] md:tracking-[0.2em] uppercase text-v-beige/65 max-w-[320px] sm:max-w-lg mt-2 md:mt-4 leading-relaxed pl-[0.15em] text-center">
               Crafting bespoke architectural monuments for the extraordinary.
             </p>
           </div>
