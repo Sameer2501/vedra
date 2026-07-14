@@ -20,6 +20,7 @@ const FALLBACK_PROJECTS = [
     "description": "A grand, modern architectural masterpiece blending raw concrete, warm wood panels, and massive glass portals. Perched beautifully with a private landscaped lawn, featuring double-height ceiling voids and seamless indoor-outdoor transition tailored for high-end luxury living.",
     "features": ["Double-Height Ceiling", "Private Landscaped Lawn", "Bespoke Automation", "Glass Portals"],
     "image": house1,
+    "specificationUrl": "https://148sunviewenclave.netlify.app/",
   },
   {
     "id": "ivory-monolith",
@@ -32,6 +33,7 @@ const FALLBACK_PROJECTS = [
     "description": "A pristine white travertine sanctuary nestled in the heart of the Swiss Alps. Designed with structural concrete arches that blend into the snowy landscape, featuring a heated indoor-outdoor infinity pool facing the Matterhorn.",
     "features": ["Alpine Travertine", "Heated Infinity Pool", "Private Observatory", "Oxygen-Enriched Master Suite"],
     "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1920&q=80",
+    "specificationUrl": "#contact",
   }
 ];
 
@@ -163,13 +165,7 @@ export default function ProjectShowcase() {
                 {/* Card CTA */}
                 <div className="flex justify-end items-center">
                   <button 
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const element = document.getElementById('contact');
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' });
-                      }
-                    }}
+                    onClick={() => handleNavigateToInterior(project.id)}
                     className="flex items-center gap-2 border border-v-gold/30 hover:border-v-gold hover:bg-v-gold hover:text-v-black px-5 py-2.5 text-xs tracking-luxury uppercase font-medium text-v-ivory transition-all duration-500 hover-interactive cursor-pointer"
                   >
                     <span>Specification</span>
