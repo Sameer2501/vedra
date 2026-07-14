@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { VedraMonogram } from './Logo';
 import { Menu, X, ArrowRight } from 'lucide-react';
 
 export default function Navbar() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
@@ -10,9 +13,10 @@ export default function Navbar() {
   const navLinks = [
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Architecture', href: '#architecture' },
-    { name: 'Interiors', href: '#interiors' },
-    { name: 'Timeline', href: '#timeline' },
+    { name: 'Services', href: '#services' },
+    // { name: 'Architecture', href: '#architecture' },
+    // { name: 'Interiors', href: '#interiors' },
+    // { name: 'Timeline', href: '#timeline' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -45,10 +49,23 @@ export default function Navbar() {
   const handleNavClick = (e, href) => {
     e.preventDefault();
     const id = href.substring(1);
-    const element = document.getElementById(id);
-    if (element) {
-      setMobileMenuOpen(false);
-      element.scrollIntoView({ behavior: 'smooth' });
+    
+    setMobileMenuOpen(false);
+    
+    // If not on the homepage, navigate home first and scroll
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 300);
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 

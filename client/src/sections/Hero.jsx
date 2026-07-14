@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowDown } from 'lucide-react';
-import clientVideo2 from '../assets/clientVideo2.mp4';
+import clientFinal from '../assets/clientFinal.mp4';
 import heroImg from '../assets/hero.jpg';
 import phoneVideo from '../assets/phoneVideo.mp4';
 
@@ -20,8 +20,8 @@ export default function Hero() {
       // 1. Initial fade-in of background video container
       gsap.fromTo('.hero-video-container',
         { scale: 1.05, opacity: 0 },
-        { 
-          scale: 1.0, 
+        {
+          scale: 1.0,
           opacity: 1,
           duration: 3.0,
           ease: 'power2.out',
@@ -36,19 +36,19 @@ export default function Hero() {
         { opacity: 0, scale: 0.94, y: 20 },
         { opacity: 1, scale: 1, y: 0, duration: 1.8, ease: 'power3.out' }
       )
-      .call(() => {
-        // Play the video from the beginning once the preloader transitions away
-        if (videoRef.current) {
-          videoRef.current.play().catch(err => {
-            console.log("Autoplay blocked or play programmatically failed:", err);
-          });
-        }
-        if (mobileVideoRef.current) {
-          mobileVideoRef.current.play().catch(err => {
-            console.log("Mobile autoplay blocked or play programmatically failed:", err);
-          });
-        }
-      }, null, '-=1.8');
+        .call(() => {
+          // Play the video from the beginning once the preloader transitions away
+          if (videoRef.current) {
+            videoRef.current.play().catch(err => {
+              console.log("Autoplay blocked or play programmatically failed:", err);
+            });
+          }
+          if (mobileVideoRef.current) {
+            mobileVideoRef.current.play().catch(err => {
+              console.log("Mobile autoplay blocked or play programmatically failed:", err);
+            });
+          }
+        }, null, '-=1.8');
 
       // 3. ScrollTrigger parallax zoom on background video
       gsap.to('.hero-video-container', {
@@ -58,8 +58,8 @@ export default function Hero() {
           end: 'bottom top',
           scrub: true,
         },
-        yPercent: 12,
-        scale: 1.05,
+        yPercent: 0,
+        scale: 1,
       });
 
       // 4. ScrollTrigger parallax shift on typography content
@@ -152,9 +152,9 @@ export default function Hero() {
   }, []);
 
   return (
-    <section 
+    <section
       ref={containerRef}
-      id="hero" 
+      id="hero"
       className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-[#050505] cursor-default"
     >
       {/* Background Wrapper */}
@@ -162,11 +162,11 @@ export default function Hero() {
         {/* Desktop Background Video */}
         <video
           ref={videoRef}
-          src={clientVideo2}
+          src={clientFinal}
           muted
           playsInline
           loop={false}
-          className="hidden md:block w-full h-full object-cover opacity-45 pointer-events-none object-[65%_bottom]"
+          className="hidden md:block w-full h-full object-cover opacity-45 pointer-events-none object-center"
         />
 
         {/* Mobile Background Video */}
@@ -181,8 +181,8 @@ export default function Hero() {
         />
 
         {/* Luxury ambient gold dust overlay */}
-        <canvas 
-          ref={canvasRef} 
+        <canvas
+          ref={canvasRef}
           className="absolute inset-0 w-full h-full pointer-events-none z-[1]"
         />
 
@@ -192,18 +192,18 @@ export default function Hero() {
 
       {/* CENTRAL CORE CONTENT */}
       <div className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none z-10 select-none">
-        
+
         {/* Luxury Rotating blueprint lines in background */}
         <div className="absolute inset-0 w-full h-full flex items-center justify-center opacity-10 pointer-events-none">
           <svg className="w-[320px] h-[320px] md:w-[600px] md:h-[600px]" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <motion.circle 
-              cx="100" cy="100" r="80" 
+            <motion.circle
+              cx="100" cy="100" r="80"
               fill="none" stroke="#C6A76A" strokeWidth="0.25" strokeDasharray="3 3"
               animate={{ rotate: 360 }}
               transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
             />
-            <motion.circle 
-              cx="100" cy="100" r="50" 
+            <motion.circle
+              cx="100" cy="100" r="50"
               fill="none" stroke="#C6A76A" strokeWidth="0.25" strokeDasharray="1 2"
               animate={{ rotate: -360 }}
               transition={{ repeat: Infinity, duration: 45, ease: "linear" }}
@@ -214,21 +214,53 @@ export default function Hero() {
         </div>
 
         {/* Brand details and CTAs */}
-        <motion.div 
+        <motion.div
           className="text-center flex flex-col items-center justify-center px-4 w-full max-w-4xl hero-parallax-content pointer-events-auto"
         >
+          {/* Brand Logo Text */}
+          <div className="flex flex-col items-center mb-8 md:mb-12 select-none">
+            <h1 className="text-3xl mt-5 sm:text-4xl md:text-5xl lg:text-5xl font-serif tracking-[0.35em] text-v-ivory uppercase leading-none pl-[0.35em]">
+              VEDRA
+            </h1>
+            <div className="flex items-center gap-3 mt-3 md:mt-4">
+              <span className="w-10 md:w-8 h-[1px] bg-v-gold/45"></span>
+              <span className="text-[9px] md:text-[10px] font-sans tracking-[0.45em] text-v-beige uppercase pl-[0.45em]">
+                LIVING
+              </span>
+              <span className="w-10 md:w-8 h-[1px] bg-v-gold/45"></span>
+            </div>
+
+            {/* Bottom Line with Diamond */}
+            <div className="flex items-center w-full max-w-[320px] sm:max-w-[460px] md:max-w-[600px] mt-6 md:mt-8">
+              {/* Left Line with continuous light sweep */}
+              <div className="h-[1.5px] flex-grow relative overflow-hidden gold-line-base-ltr">
+                <div className="absolute inset-0 gold-line-sweep-ltr -translate-x-full animate-sweep-ltr" />
+              </div>
+              <div className="mx-3.5 flex items-center justify-center">
+                <div
+                  className="w-3 h-3 rotate-45 border bg-transparent flex-shrink-0 animate-pulse"
+                  style={{ borderColor: 'rgba(198, 167, 106, 1)' }}
+                />
+              </div>
+              {/* Right Line with continuous light sweep */}
+              <div className="h-[1.5px] flex-grow relative overflow-hidden gold-line-base-rtl">
+                <div className="absolute inset-0 gold-line-sweep-rtl translate-x-full animate-sweep-rtl" />
+              </div>
+            </div>
+          </div>
+
           {/* Tagline Reveal */}
           <div className="flex flex-col items-center gap-3 md:gap-4">
-            <span className="text-sm md:text-lg font-serif tracking-[0.3em] text-v-gold uppercase mb-1">
+            {/* <span className="text-sm md:text-lg font-serif tracking-[0.3em] text-v-gold uppercase mb-1">
               Ved — Knowledge. Dra — Roots.
-            </span>
+            </span> */}
             <h2 className="text-v-ivory text-sm sm:text-base md:text-2xl font-serif font-light tracking-[0.25em] md:tracking-[0.3em] uppercase leading-relaxed relative">
-              Where Architecture Meets Prestige
+              Designed with Intent . Built for living
               <span className="absolute bottom-[-8px] left-[10%] w-[80%] h-[1px] bg-gradient-to-r from-transparent via-v-gold/70 to-transparent overflow-hidden">
                 <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-v-ivory to-transparent -translate-x-full animate-light-sweep" />
               </span>
             </h2>
-            
+
             <p className="text-[10px] md:text-sm font-sans tracking-[0.15em] md:tracking-[0.2em] uppercase text-v-beige/65 max-w-[280px] sm:max-w-lg mt-2 md:mt-4 leading-relaxed pl-[0.15em]">
               Crafting bespoke architectural monuments for the extraordinary.
             </p>

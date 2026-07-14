@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import { BrowserRouter as Router, Routes, Route, useSearchParams, useLocation } from 'react-router-dom';
 import SmoothScroll from './components/SmoothScroll';
 import CustomCursor from './components/CustomCursor';
 import Navbar from './components/Navbar';
@@ -10,13 +11,47 @@ import Preloader from './components/Preloader';
 import Hero from './sections/Hero';
 import About from './sections/About';
 import ProjectShowcase from './sections/ProjectShowcase';
-import Architecture from './sections/Architecture';
-import Interiors from './sections/Interiors';
+// import Architecture from './sections/Architecture';
+// import Interiors from './sections/Interiors';
+import InteriorDetail from './sections/InteriorDetail';
 import WhyChoose from './sections/WhyChoose';
-import Testimonials from './sections/Testimonials';
-import Timeline from './sections/Timeline';
+// import Testimonials from './sections/Testimonials';
+// import Timeline from './sections/Timeline';
 // import Stats from './sections/Stats';
 import Contact from './sections/Contact';
+
+function ScrollToTop() {
+  const { pathname, search } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname, search]);
+
+  return null;
+}
+
+function HomeView() {
+  return (
+    <>
+      <Hero />
+      <About />
+      <ProjectShowcase />
+      {/* <Architecture /> */}
+      {/* <Interiors /> */}
+      <WhyChoose />
+      {/* <Testimonials /> */}
+      {/* <Timeline /> */}
+      {/* <Stats /> */}
+      <Contact />
+    </>
+  );
+}
+
+function InteriorView() {
+  const [searchParams] = useSearchParams();
+  const projectId = searchParams.get('project');
+  return <InteriorDetail projectId={projectId} />;
+}
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -40,7 +75,8 @@ function App() {
   }, [isLoading]);
 
   return (
-    <>
+    <Router>
+      <ScrollToTop />
       {/* Luxury Preloader Screen */}
       <AnimatePresence mode="wait">
         {isLoading && (
@@ -57,22 +93,16 @@ function App() {
 
         {/* Main Storytelling Sections */}
         <main className="relative bg-v-black min-h-screen">
-          <Hero />
-          <About />
-          <ProjectShowcase />
-          <Architecture />
-          <Interiors />
-          <WhyChoose />
-          <Testimonials />
-          <Timeline />
-          {/* <Stats /> */}
-          <Contact />
+          <Routes>
+            <Route path="/" element={<HomeView />} />
+            <Route path="/interior" element={<InteriorView />} />
+          </Routes>
         </main>
 
         {/* Luxury Footer */}
         <Footer />
       </SmoothScroll>
-    </>
+    </Router>
   );
 }
 

@@ -1,23 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, MapPin, Maximize2, Compass } from 'lucide-react';
+import house1 from '../assets/house1.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
 // Fallback project list if backend is not reachable
 const FALLBACK_PROJECTS = [
   {
-    "id": "obsidian-pavilion",
-    "title": "The Obsidian Pavilion",
-    "location": "Reykjavík Cliffs, Iceland",
+    "id": "sunview-enclave",
+    "title": "148 SUNVIEW ENCLAVE",
+    "location": "Ludhiana · Punjab",
     "category": "Residential Estate",
     "year": "2024",
     "area": "1,200 sq m",
-    "value": "$28,500,000",
-    "description": "A dark architectural marvel carved out of volcanic basalt and polished concrete, perched on a private Icelandic cliffside. Features absolute minimalism, floor-to-ceiling glass, and a cantilevered outdoor lounge suspended over the North Atlantic Ocean.",
-    "features": ["Cantilevered Lounge", "Volcanic Basalt Walls", "Subterranean Spa", "Helipad Access"],
-    "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80",
+    "value": "On Request",
+    "description": "A grand, modern architectural masterpiece blending raw concrete, warm wood panels, and massive glass portals. Perched beautifully with a private landscaped lawn, featuring double-height ceiling voids and seamless indoor-outdoor transition tailored for high-end luxury living.",
+    "features": ["Double-Height Ceiling", "Private Landscaped Lawn", "Bespoke Automation", "Glass Portals"],
+    "image": house1,
   },
   {
     "id": "ivory-monolith",
@@ -30,30 +32,6 @@ const FALLBACK_PROJECTS = [
     "description": "A pristine white travertine sanctuary nestled in the heart of the Swiss Alps. Designed with structural concrete arches that blend into the snowy landscape, featuring a heated indoor-outdoor infinity pool facing the Matterhorn.",
     "features": ["Alpine Travertine", "Heated Infinity Pool", "Private Observatory", "Oxygen-Enriched Master Suite"],
     "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1920&q=80",
-  },
-  {
-    "id": "aurelia-villa",
-    "title": "The Aurelia Villa",
-    "location": "Amalfi Coast, Italy",
-    "category": "Coastal Estate",
-    "year": "2026",
-    "area": "980 sq m",
-    "value": "$24,200,000",
-    "description": "A modern coastal villa blending warm golden limestone, hand-brushed brass detailing, and ancient olive trees. Pinned directly to the Amalfi cliffs with subterranean boat docks and glass floors revealing the crystal Mediterranean waters below.",
-    "features": ["Subterranean Boat Dock", "Glass-Floor Atrium", "Citrus-Groove Terraces", "Gold-Leaf Accented Spa"],
-    "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1920&q=80",
-  },
-  {
-    "id": "lumina-atrium",
-    "title": "The Lumina Atrium",
-    "location": "Kyoto Hills, Japan",
-    "category": "Wellness Estate",
-    "year": "2026",
-    "area": "1,150 sq m",
-    "value": "$31,800,000",
-    "description": "A futuristic wellness estate designed with sustainably harvested hinoki cedar, dynamic smart-glass dome roofs, and indoor Zen rock gardens. Features a 15-meter waterfall centerpiece that regulates internal humidity and air purity naturally.",
-    "features": ["Hinoki Cedar Frame", "15m Indoor Waterfall", "Smart-Glass Dome Roof", "Bespoke Onsen Bathhouse"],
-    "image": "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1920&q=80",
   }
 ];
 
@@ -61,6 +39,13 @@ export default function ProjectShowcase() {
   const [projects, setProjects] = useState(FALLBACK_PROJECTS);
   const containerRef = useRef(null);
   const scrollSectionRef = useRef(null);
+  const pinContainerRef = useRef(null);
+
+  const navigate = useNavigate();
+
+  const handleNavigateToInterior = (projectId) => {
+    navigate(`/interior?project=${projectId}`);
+  };
 
   // No backend active - displaying premium local database directly
 
@@ -76,7 +61,7 @@ export default function ProjectShowcase() {
         ease: 'none',
         scrollTrigger: {
           trigger: containerRef.current,
-          pin: true,
+          pin: pinContainerRef.current,
           scrub: 1,
           start: 'top top',
           end: () => `+=${scrollSectionRef.current.scrollWidth - window.innerWidth}`,
@@ -95,7 +80,7 @@ export default function ProjectShowcase() {
       className="relative bg-v-black overflow-hidden"
     >
       {/* Pinned horizontal wrapper */}
-      <div className="h-screen w-full flex items-center overflow-hidden">
+      <div ref={pinContainerRef} className="h-screen w-full flex items-center overflow-hidden">
         
         <div 
           ref={scrollSectionRef}
@@ -132,11 +117,11 @@ export default function ProjectShowcase() {
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(198,167,106,0.06),transparent_60%)] pointer-events-none" />
               
               {/* Image side */}
-              <div className="w-full md:w-1/2 h-[280px] md:h-full overflow-hidden relative">
+              <div className="w-full md:w-[55%] h-[320px] md:h-full overflow-hidden relative">
                 <img 
                   src={project.image} 
                   alt={project.title} 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2000ms] ease-out"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-[2000ms] ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-v-black/40 to-transparent" />
                 
@@ -147,7 +132,7 @@ export default function ProjectShowcase() {
               </div>
 
               {/* Data/Detail side */}
-              <div className="w-full md:w-1/2 flex flex-col justify-between py-2 text-left">
+              <div className="w-full md:w-[45%] flex flex-col justify-between py-2 text-left">
                 <div>
                   <div className="flex items-center gap-2 text-[10px] font-sans tracking-luxury uppercase text-v-gold mb-3">
                     <MapPin className="h-3 w-3" />
@@ -176,18 +161,20 @@ export default function ProjectShowcase() {
                 </div>
 
                 {/* Card CTA */}
-                <div className="flex justify-between items-center">
-                  <span className="text-[10px] font-sans tracking-luxury text-v-beige/40 uppercase">
-                    Est. Delivery {project.year}
-                  </span>
-                  
-                  <a 
-                    href="#contact"
-                    className="flex items-center gap-2 border border-v-gold/30 group-hover:border-v-gold hover:bg-v-gold hover:text-v-black px-4 py-2 text-xs tracking-luxury uppercase font-medium text-v-ivory transition-all duration-500 hover-interactive"
+                <div className="flex justify-end items-center">
+                  <button 
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const element = document.getElementById('contact');
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                    className="flex items-center gap-2 border border-v-gold/30 hover:border-v-gold hover:bg-v-gold hover:text-v-black px-5 py-2.5 text-xs tracking-luxury uppercase font-medium text-v-ivory transition-all duration-500 hover-interactive cursor-pointer"
                   >
-                    <span>Request Dossier</span>
+                    <span>Specification</span>
                     <ArrowRight className="h-3 w-3" />
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>

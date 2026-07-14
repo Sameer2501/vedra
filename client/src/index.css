@@ -197,3 +197,40 @@ html.lenis, html.lenis body {
   animation: kenburns 36s ease-in-out infinite;
   will-change: transform;
 }
+
+/* Gold light sweep & lightning effects */
+@keyframes sweep-left-to-right {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes sweep-right-to-left {
+  0% { transform: translateX(100%); }
+  50% { transform: translateX(-100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-sweep-ltr {
+  animation: sweep-left-to-right 3s ease-in-out infinite;
+}
+
+.animate-sweep-rtl {
+  animation: sweep-right-to-left 3s ease-in-out infinite;
+}
+
+.gold-line-base-ltr {
+  background: linear-gradient(to right, transparent, rgba(198, 167, 106, 0.45));
+}
+
+.gold-line-base-rtl {
+  background: linear-gradient(to left, transparent, rgba(198, 167, 106, 0.45));
+}
+
+.gold-line-sweep-ltr {
+  background: linear-gradient(to right, transparent, rgba(198, 167, 106, 1.0), transparent);
+}
+
+.gold-line-sweep-rtl {
+  background: linear-gradient(to left, transparent, rgba(198, 167, 106, 1.0), transparent);
+}
